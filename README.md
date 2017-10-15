@@ -17,4 +17,4 @@ It contains server bulit by Django and client(exploer)
 * IP DNS SubDomain information collect
 * Vulnerability detect
 * Webshell admin  
-
+* Server information collect
