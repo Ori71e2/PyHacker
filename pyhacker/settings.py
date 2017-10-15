@@ -55,7 +55,7 @@ ROOT_URLCONF = 'pyhacker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['appfront/dist'],
+        'DIRS': ['frontend/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
