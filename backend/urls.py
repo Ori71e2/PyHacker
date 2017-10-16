@@ -18,4 +18,10 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name="index.html")),
+    url(r'^/detect/ip_addr/', backend.app.detect.ip_addr),
+    url(r'^/detect/addr_ip/', app.detect.addr_ip).
+    url(r'^/vul/binary/', app.vul.binary),
+    url(r'^/vul/framework/', app.vul.framework),
+    url(r'^/vul/cms/', app.vul.cms),
+    url(r'^/vul/', app.vul.urls),
 ]

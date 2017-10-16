@@ -59,7 +59,7 @@
     "karma-spec-reporter": "0.0.31",
     "karma-webpack": "^2.0.2",
     "mocha": "^3.2.0",
-    "chai": "^4.12",
+    "chai": "^4.1.2",
     "sinon": "^4.0.0",
     "sinon-chai": "^2.8.0",
     "inject-loader": "^3.0.0",
