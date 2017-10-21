@@ -40,12 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'backend',
     'detect',
     'namp',
+    'scan',
+
     'vul_cms',
     'vul_framework',
     'vul_binary',
+    
     'socks_proxy',
     'ip_proxy_poll'
 ]
