@@ -3,5 +3,8 @@
 *.so
 *.egg
 *.egg-info
+*.pyc
+apps/*/*.pyc 
+pyhacker/*.pyc
 dist
 build
