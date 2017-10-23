@@ -1,0 +1,3 @@
+[submodule "apps/ip_proxy_poll/IPProxyPool"]
+	path = apps/ip_proxy_poll/IPProxyPool
+	url = https://github.com/qiyeboy/IPProxyPool
