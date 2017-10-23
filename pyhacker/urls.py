@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', include('backend.urls')),
     url(r'^detect/', include('detect.urls')),
+    url(r'^ip_proxy_poll/', include('ip_proxy_poll.urls')),
 ]
