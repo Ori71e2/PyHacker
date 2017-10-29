@@ -8,7 +8,7 @@ import os
 # Create your views here.
 
 
-def install(void):
+def install():
     '''
     modles = [requests, chardet, web.py, gevent, psutil]
     response = ['str':'', ]

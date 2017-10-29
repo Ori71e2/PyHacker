@@ -8,6 +8,6 @@ import sys
 from module_install import install
 # Create your views here.
 
-def hello(void):
+def hello(request):
     return install()
 #   return HttpResponse('Hello World')
