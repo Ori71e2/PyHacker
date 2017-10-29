@@ -1,3 +1,6 @@
 [submodule "apps/ip_proxy_poll/IPProxyPool"]
 	path = apps/ip_proxy_poll/IPProxyPool
 	url = https://github.com/qiyeboy/IPProxyPool
+[submodule "apps/socks_proxy/shadowsocks"]
+	path = apps/socks_proxy/shadowsocks
+	url = https://github.com/ziggear/shadowsocks
