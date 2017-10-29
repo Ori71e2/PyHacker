@@ -8,15 +8,20 @@ import os
 # Create your views here.
 
 
-def install():
+def install(modules):
     '''
-    modles = [requests, chardet, web.py, gevent, psutil]
-    response = ['str':'', ]
+    modules = [requests, chardet, web.py, gevent, psutil]
+    '''
+    response = ''
     for each in modules:
         try:
             imp.find_module(each)
         except ImportError:
-            if os.system(each) == 0:
-                response[str] += ',' + each
-    '''
-    return HttpResponse("Success!")
+            if os.system('pip install ' + each)>>8 != 0:
+                response += each + ' module install fail!' + '<br>'
+    if response == '':
+        response = "Install Success"
+    else:
+        response += "Install Failed"
+
+    return HttpResponse(response)

@@ -9,5 +9,6 @@ from module_install import install
 # Create your views here.
 
 def hello(request):
-    return install()
+    modules = ['web.py']
+    return install(modules)
 #   return HttpResponse('Hello World')
