@@ -14,19 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
 from django.views.generic import TemplateView  
-
+from apps_test import views as apps_test_views
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', include('backend.urls')),
-    url(r'^apps_test/', include('apps_test.urls')),
-    url(r'^detect/', include('detect.urls')),
-    url(r'^namp/', include('namp.urls')),
-    url(r'^scan/', include('scan.urls')),
-    url(r'^vul_binary/', include('vul_binary.urls')),
-    url(r'^vul_cms/', include('vul_cms.urls')),
-    url(r'^vul_framework/', include('vul_framework.urls')),
-    url(r'^socks_proxy/', include('socks_proxy.urls')),
-    url(r'^ip_proxy_poll/', include('ip_proxy_poll.urls')),
+    url(r'^$', apps_test_views.hello, name='hello'),
 ]

@@ -40,5 +40,4 @@ from ip_proxy_poll import views as  ip_proxy_poll_views
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name="index_test.html")),
-    url(r'^install$', ip_proxy_poll_views.install),
 ]
