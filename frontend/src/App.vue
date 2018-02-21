@@ -5,11 +5,11 @@
     <el-row>
         <el-col :span="24">
           <el-menu default-active="5" class="el-menu-demo" mode="horizontal" @select="">
-            <el-menu-item index="1">高级插件</el-menu-item>
-            <el-menu-item index="2">在线商城</el-menu-item>
-            <el-menu-item index="3">客户管理</el-menu-item>
-            <el-menu-item index="4">系统设置</el-menu-item>
-            <el-menu-item index="5">活动发布</el-menu-item>
+            <el-menu-item index="1">Manege</el-menu-item>
+            <el-menu-item index="2">Project</el-menu-item>
+            <el-menu-item index="3">Playloads</el-menu-item>
+            <el-menu-item index="4">Rules</el-menu-item>
+            <el-menu-item index="5">Webssh</el-menu-item>
           </el-menu>
         </el-col>
     </el-row>
