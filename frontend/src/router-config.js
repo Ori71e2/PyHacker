@@ -1,26 +1,25 @@
 
-import activePublic from './page/activePublic/index.vue'
-import step1 from './page/activePublic/step1.vue'
-import step2 from './page/activePublic/step2.vue'
-import step3 from './page/activePublic/step3.vue'
-import step4 from './page/activePublic/step4.vue'
+import public from './page/public/index.vue'
+import step1 from './page/public/step1.vue'
+import step2 from './page/public/step2.vue'
+import step3 from './page/public/step3.vue'
+import step4 from './page/public/step4.vue'
 
-import totalpages from './page/activeManage/totalpages.vue'
-import activeManage from './page/activeManage/index.vue'
-import detail from './page/activeManage/detail.vue'
-
-import page1 from './page/activeManage/page1.vue'
-import page2 from './page/activeManage/page2.vue'
-import page3 from './page/activeManage/page3.vue'
-import page4 from './page/activeManage/page4.vue'
-import page5 from './page/activeManage/page5.vue'
+import totalpages from './page/manage/totalpages.vue'
+import manage from './page/manage/index.vue'
+import detail from './page/manage/detail.vue'
+import page1 from './page/manage/page1.vue'
+import page2 from './page/manage/page2.vue'
+import page3 from './page/manage/page3.vue'
+import page4 from './page/manage/page4.vue'
+import page5 from './page/manage/page5.vue'
 
 
 export default [
   {
-    path: '/activeManage',component:totalpages,
+    path: '/manage',component:totalpages,
     children:[
-      { path: ''      , component: activeManage  },
+      { path: ''      , component: manage  },
       {
         path: 'detail', component: detail,
 
@@ -44,7 +43,7 @@ export default [
       },
     ]
   },{
-    path:'/activePublic',component:activePublic,
+    path:'/public',component:public,
     children:[
       { path: ''      , component: step1  },
       { path: 'step1', component: step1  },

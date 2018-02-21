@@ -19,9 +19,9 @@
     <main>
           <!-- 左侧导航 -->
         <div class="main-left">
-          <el-menu default-active="/activePublic" class="el-menu-vertical-demo" :router="true">
-            <el-menu-item index="/activePublic" :class="{'isActive': active}">活动发布</el-menu-item>
-            <el-menu-item index="/activeManage" :class="{'isActive': !active}">活动管理</el-menu-item>
+          <el-menu default-active="/public" class="el-menu-vertical-demo" :router="true">
+            <el-menu-item index="/public" :class="{'isActive': active}">活动发布</el-menu-item>
+            <el-menu-item index="/manage" :class="{'isActive': !active}">活动管理</el-menu-item>
           </el-menu>
         </div>
 
@@ -46,23 +46,23 @@ Vue.use(Element)
 
 export default {
   name: 'app',
-  data: function (){
+  data: function () {
     return {
       active:true,
       headerFixed : true
     }
   },
   created: function(){
-    this.$router.push('/activePublic');
+    this.$router.push('/public');
   },
   methods: {
 
   },
   watch: {
      '$route': function (to,from) {
-         if(to.path == '/activePublic'){
+         if(to.path == '/public'){
              this.active = true ;
-         }else if(to.path == '/activeManage'){
+         }else if(to.path == '/manage'){
              this.active = false ;
          }
      }
