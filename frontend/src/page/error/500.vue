@@ -1,6 +1,6 @@
 <template>
     <div>
-        404: Page Not Found!
+        500: An Unknown Error In The System!
         <a @click="back">Back To Previous Page</a>
     </div>
 </template>
