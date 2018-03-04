@@ -1,15 +1,14 @@
+// Router Control
+// {
+//    path: Router Path,
+//    components: r => require.ensure([], () => r(require('Router Page')), 'Filename Packed')
+//
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import VueRouter from 'vue-router'
+import store from 'src-store'
+import Cookies from 'js-cookie'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import whiteList from './direct-accsss'
+import asyncRouter from './async-router'
 
-Vue.use(Router)
-
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: HelloWorld
-    }
-  ]
-})

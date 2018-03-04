@@ -12,12 +12,22 @@ import router from './router'
 import './components/platform/install.js'
 Vue.config.productionTip = false
  
+Vue.prototype.$axios = axios;
 Vue.use(ElementUI) 
 
 /* eslint-disable no-new */
+
+new Vue({
+  axios,
+  router,
+  store,
+  render: h => h(App)
+}).$mount('#app')
+/*
 new Vue({
   el: '#app',
   router,
   template: '<App/>',
   components: { App }
 })
+*/
