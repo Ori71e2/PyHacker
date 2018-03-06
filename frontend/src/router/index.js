@@ -9,6 +9,6 @@ import store from 'src-store'
 import Cookies from 'js-cookie'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import whiteList from './direct-accsss'
+import whiteList from './direct-access'
 import asyncRouter from './async-router'
 

@@ -9,6 +9,7 @@ const asyncRouter = [
         component: r => require.ensure([], () => r(require('src-page/layout/layout')), layout),
         children: []
     },
+    /*
     {
         path: '/table',
         meta: {
@@ -16,7 +17,7 @@ const asyncRouter = [
         },
         component: r => require.ensure([], ()=> r(require('src-page/table/table')), 'table')
     },
-    /*
+
     {
         path: '/form',
         meta:{
