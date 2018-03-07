@@ -1,6 +1,6 @@
 export default {
     /**
-     * 设置cookie
+     * set cookie
      * @param {string} key 
      * @param {string|number} value 
      * @param {number} day 
@@ -12,7 +12,7 @@ export default {
         document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
     },
     /**
-     * 获取cookie
+     * get cookie
      * @param {string} name 
      * @returns 
      */
@@ -27,7 +27,7 @@ export default {
         }
     },
     /**
-     * 删除cookie
+     * delete cookie
      * @param {string} name 
      */
     del(name) {
