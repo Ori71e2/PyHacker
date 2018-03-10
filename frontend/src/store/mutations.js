@@ -1,7 +1,10 @@
+// Change Language And Theme
+
 import Cookies from 'js-cookie'
 import i18n from 'src-util/i18n'
 
 export default {
+    // Language Change
     changeLang(state, data){
         if(data){
             Cookies.set('lang', data)
@@ -9,9 +12,12 @@ export default {
             state.lang = data
         }   
     },
+    /*
+    // Theme Change
     changeLayout(state, data){
         if(data){
             state.navbarPosition = data
         }
     }
+    */
 }
