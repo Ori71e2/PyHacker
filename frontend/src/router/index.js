@@ -5,7 +5,7 @@
 //
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from 'src-store'
+import store from '@/store'
 import Cookies from 'js-cookie'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -61,39 +61,39 @@ const routes = [
     },
     {
         path: '/login',
-        component: r => require.ensure([], () => r(require('src-page/login/login')), 'login')
+        component: r => require.ensure([], () => r(require('@/page/login/login')), 'login')
     },
     {
         path: '/defaultLayout',
-        component: r => require.ensure([], () => r(require('src-page/layout/layout')), 'layout'),
+        component: r => require.ensure([], () => r(require('@/page/layout/layout')), 'layout'),
         meta:{
             permission:[]
         },
         // User login verification needs to be done 
         children: [{
             path: '/home',
-            component: r => require.ensure([], () => r(require('src-page/home/home')), 'home'),
+            component: r => require.ensure([], () => r(require('@/page/home/home')), 'home'),
         }]
     },
     {
         path: '/error',
-        component: r => require.ensure([], () => r(require('src-page/error/error')), 'error'),
+        component: r => require.ensure([], () => r(require('@/page/error/error')), 'error'),
         children: [
             {
                 path: '/error/401',
-                component: r => require.ensure([], () => r(require('src-page/error/401')), 'error')
+                component: r => require.ensure([], () => r(require('@/page/error/401')), 'error')
             },
             {
                 path: '/error/403',
-                component: r => require.ensure([], () => r(require('src-page/error/403')), 'error')
+                component: r => require.ensure([], () => r(require('@/page/error/403')), 'error')
             },
             {
                 path: '/error/404',
-                component: r => require.ensure([], () => r(require('src-page/error/404')), 'error')
+                component: r => require.ensure([], () => r(require('@/page/error/404')), 'error')
             },
             {
                 path: '/error/500',
-                component: r => require.ensure([], () => r(require('src-page/error/500')), 'error')
+                component: r => require.ensure([], () => r(require('@/page/error/500')), 'error')
             }
         ]
     }

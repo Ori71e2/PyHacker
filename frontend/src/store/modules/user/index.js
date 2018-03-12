@@ -1,4 +1,4 @@
-import axios from 'src-util/ajax'
+import axios from '@/util/ajax'
 import Cookies from 'js-cookie'
 import { Message } from 'element-ui';
 
@@ -48,7 +48,7 @@ const mutations = {
 }
 
 const actions = {
-    // 邮箱登录
+    // login by email
     loginByEmail({ commit, rootState }, userInfo) {
         return new Promise((resolve, reject) => {
             axios({
@@ -60,6 +60,8 @@ const actions = {
             }).then(res => {
                 const data = res.data
                 if(data.login){
+                    // set uid, name, token get grom server
+                    // set lang from rootState
                     commit('setUID', data.uid)
                     commit('setName', data.name)
                     commit('setToken', data.token)

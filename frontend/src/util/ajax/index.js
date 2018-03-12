@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import store from 'src-store'
+import store from '@/store'
 
 const service = axios.create({
     timeout: 5000

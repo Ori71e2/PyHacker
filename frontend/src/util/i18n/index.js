@@ -5,8 +5,8 @@ import VueI18n from 'vue-i18n'
 import ElementUI from 'element-ui'
 import enElement from 'element-ui/lib/locale/lang/en'
 import zhElement from 'element-ui/lib/locale/lang/zh-CN'
-import enLocale from 'src-lang/en'
-import zhLocale from 'src-lang/zh-cn'
+import enLocale from '@/lang/en'
+import zhLocale from '@/lang/zh-cn'
 
 const messages = {
     en: {

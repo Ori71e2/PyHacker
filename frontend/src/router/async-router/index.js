@@ -6,7 +6,7 @@
 const asyncRouter = [
     {
         path: '/asynRouter',
-        component: r => require.ensure([], () => r(require('src-page/layout/layout')), layout),
+        component: r => require.ensure([], () => r(require('@/page/layout/layout')), layout),
         children: []
     },
     /*
@@ -15,7 +15,7 @@ const asyncRouter = [
         meta: {
             permission: []
         },
-        component: r => require.ensure([], ()=> r(require('src-page/table/table')), 'table')
+        component: r => require.ensure([], ()=> r(require('@/page/table/table')), 'table')
     },
 
     {
@@ -23,98 +23,98 @@ const asyncRouter = [
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/form/form')), 'form'),
+        component: r => require.ensure([], () => r(require('@/page/form/form')), 'form'),
     },
     {
         path: '/components',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/components/index')), 'sysComponents'),
+        component: r => require.ensure([], () => r(require('@/page/components/index')), 'sysComponents'),
     },
     {
         path: '/components/permission',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/components/function/permission')), 'sysComponents'),
+        component: r => require.ensure([], () => r(require('@/page/components/function/permission')), 'sysComponents'),
     },
     {
         path: '/components/pageTable',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/components/function/pageTable')), 'sysComponents'),
+        component: r => require.ensure([], () => r(require('@/page/components/function/pageTable')), 'sysComponents'),
     },
     {
         path: '/components/pageSearch',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/components/ui/pageSearch')), 'sysComponents'),
+        component: r => require.ensure([], () => r(require('@/page/components/ui/pageSearch')), 'sysComponents'),
     },
     {
         path: '/components/pageSection',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/components/ui/pageSection')), 'sysComponents'),
+        component: r => require.ensure([], () => r(require('@/page/components/ui/pageSection')), 'sysComponents'),
     },
     {
         path: '/components/pageTitle',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/components/ui/pageTitle')), 'sysComponents'),
+        component: r => require.ensure([], () => r(require('@/page/components/ui/pageTitle')), 'sysComponents'),
     },
     {
         path: '/components/pageToolbar',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/components/ui/pageToolbar')), 'sysComponents'),
+        component: r => require.ensure([], () => r(require('@/page/components/ui/pageToolbar')), 'sysComponents'),
     },
     {
         path: '/components/pageNotes',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/components/assist/pageNotes')), 'sysComponents'),
+        component: r => require.ensure([], () => r(require('@/page/components/assist/pageNotes')), 'sysComponents'),
     },
     {
         path: '/example/table',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/example/table')), 'example'),
+        component: r => require.ensure([], () => r(require('@/page/example/table')), 'example'),
     },
     {
         path: '/example/charts',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/example/charts/charts')), 'example'),
+        component: r => require.ensure([], () => r(require('@/page/example/charts/charts')), 'example'),
     },
     {
         path: '/example/map',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/example/map/map')), 'example'),
+        component: r => require.ensure([], () => r(require('@/page/example/map/map')), 'example'),
     },
     {
         path: '/i18n',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/i18n/i18n')), 'i18n'),
+        component: r => require.ensure([], () => r(require('@/page/i18n/i18n')), 'i18n'),
     },
     {
         path: '/theme',
         meta:{
             permission:[]
         },
-        component: r => require.ensure([], () => r(require('src-page/themeChange/themeChange')), 'theme'),
+        component: r => require.ensure([], () => r(require('@/page/themeChange/themeChange')), 'theme'),
     }
     */
 ]

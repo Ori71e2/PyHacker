@@ -1,6 +1,6 @@
 // Root level state
 // Language Navgation Theme Duration
-import i18n from 'src-util/i18n'
+import i18n from '@/util/i18n'
 
 let lang = i18n.locale
 

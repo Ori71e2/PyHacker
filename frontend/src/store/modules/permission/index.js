@@ -1,4 +1,4 @@
-import axios from 'src-util/ajax'
+import axios from '@/util/ajax'
 // import { Message } from 'element-ui';
 
 const state = {

@@ -2,7 +2,7 @@
 // Change Language And Theme
 
 import Cookies from 'js-cookie'
-import i18n from 'src-util/i18n'
+import i18n from '@/util/i18n'
 
 export default {
     // Language Change
