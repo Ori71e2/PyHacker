@@ -1,3 +1,4 @@
+// Root level state
 // Language Navgation Theme Duration
 import i18n from 'src-util/i18n'
 
