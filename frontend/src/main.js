@@ -6,8 +6,11 @@ import 'src-assets/css/theme-default.scss'
 import Element from "element-ui";
 import Vue from 'vue'
 import App from './index'
+import store from './store'
 import axios from './util/ajax'
 import router from './router'
+import i18n from './util/i18n'
+
 
 import './components/platform/install.js'
 Vue.config.productionTip = false
