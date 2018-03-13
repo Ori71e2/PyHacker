@@ -1,4 +1,8 @@
 // frame style
+
+// import firstn
+@import './theme/default';
+
 @import 'common/footer';
 @import 'common/header';
 
@@ -9,7 +13,6 @@
 @import 'page/login';
 
 // 引入基础变量
-@import './theme/default';
 @import '_function';
 @import '_mixin';
 @import 'reset';
