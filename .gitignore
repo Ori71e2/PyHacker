@@ -7,4 +7,3 @@
 apps/*/*.pyc 
 pyhacker/*.pyc
 dist
-build
