@@ -1,11 +1,11 @@
 <template>
-  <div id="app" class="py-app">
-    <router-view></router-view>
-  </div>
+    <div id="app" class="sys-app">
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
-  export default {
+export default {
     
-  }
+}
 </script>

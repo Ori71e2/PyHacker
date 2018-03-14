@@ -1,15 +1,15 @@
 <template>
     <div>
-        403: Access Refused!
-        <a @click="back">Back To Previous Page</a>
+        403:访问被拒绝
+        <a @click="back">返回上一页</a>
     </div>
 </template>
 
 <script>
     export default {
-        mehtods: {
-            back() {
-                this.$router.go(-1);
+        methods: {
+            back(){
+                this.$router.go(-1)
             }
         }
     }

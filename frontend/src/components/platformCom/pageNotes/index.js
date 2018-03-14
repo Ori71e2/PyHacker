@@ -1,4 +1,3 @@
-
 import PageNotes from './main'
 
 PageNotes.install = function(Vue){  

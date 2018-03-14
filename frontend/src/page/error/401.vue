@@ -1,15 +1,15 @@
 <template>
     <div>
-        401: No Permission To Access!
-        <a @click="back">Back To Previous Page</a>
+        401:没有操作权限
+        <a @click="back">返回上一页</a>
     </div>
 </template>
 
 <script>
     export default {
-        mehtods: {
-            back() {
-                this.$router.go(-1);
+        methods: {
+            back(){
+                this.$router.go(-1)
             }
         }
     }

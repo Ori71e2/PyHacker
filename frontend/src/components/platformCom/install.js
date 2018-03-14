@@ -1,5 +1,4 @@
-// Register Global Components
-
+// 组件全局注册
 import Vue from 'vue'
 
 import HasPermission from './hasPermission'
@@ -21,7 +20,7 @@ const components = [
     PageSearch
 ]
 
-// Register Global Components
+// 注册全局组件
 components.map((com) =>{
     Vue.use(com)
     // Vue.component(com.name, com)

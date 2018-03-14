@@ -1,4 +1,24 @@
-.sys-table-pagination{
-    margin-top: 10px;
-    text-align: left;
+.sys-section{
+    display: block;
+    width: 100%;
+    margin-bottom: $basicMargin*2;
+    & > .title{
+        height: 50px;
+        margin-bottom: $basicMargin;
+        border-bottom: 1px solid $borderColor;
+        &::after{
+            content: "";
+            display: block;
+            height: 0;
+            clear: both;
+        }
+        & > strong{
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 50px;
+        }
+        &  > .toolbar{
+            float: right;
+        }
+    }
 }

@@ -1,18 +1,5 @@
-// frame style
-
-// import firstn
-@import './theme/default';
-
-@import 'common/footer';
-@import 'common/header';
-
-// components style
-@import 'components/search';
-
-// page style
-@import 'page/login';
-
 // 引入基础变量
+@import './theme/default';
 @import '_function';
 @import '_mixin';
 @import 'reset';
@@ -30,3 +17,4 @@
 @import 'components/sysToolbar';
 // 页面样式
 @import 'page/login'
+// 第三方样式

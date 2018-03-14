@@ -1,4 +1,3 @@
-
 import PageTable from './main'
 
 PageTable.install = function(Vue){  

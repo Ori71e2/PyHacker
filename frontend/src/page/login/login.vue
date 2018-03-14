@@ -2,7 +2,7 @@
     <div class="sys-login">
         <div class="login-area">
             <div class="logo">
-                <img src="@/static/images/logo.png" alt="">
+                <img src="~sysStatic/images/logo.png" alt="">
             </div>
             <div class="form-group">
                 <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px">
@@ -104,3 +104,4 @@
         }
     }
 </script>
+

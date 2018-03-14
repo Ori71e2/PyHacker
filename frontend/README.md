@@ -1,30 +1,127 @@
-# frontend
+# Vue + ElementUI 后台管理系统框架
 
-> A Vue.js project
+>本框架为后台管理类系统解决方案，其中包含很多后台管理中的必备功能。当前版本仅供学习交流，框架中vue及webpack版本会随时更新，尽量采用平滑升级策略，修改部分全局或打包配置完成，如果更改过大，版本号将自动增加，并提供之前版本的release，所以如果注重稳定的话，请在生产环境中谨慎使用。
 
-## Build Setup
+## **功能列表**
+- 登录登出
+- 菜单异步加载
+- 页面详细权限控制
+- 多语言支持
+- 布局切换
+- 高德地图集成
+- Echarts集成
+- 错误页面
+- mock数据
+- 页面加载进度条
 
+## **项目使用**
 ``` bash
-# install dependencies
+# 安装项目依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 开启本地服务，默认为localhost:9000
 npm run dev
 
-# build for production with minification
+# 项目打包，构建生产环境
 npm run build
 
-# build for production and view the bundle analyzer report
+# 打包过程中想查看具体报告则可以通过以下命令实现
 npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## **项目结构**
+本项目的开发代码目录结构如下，在编码时请按照规则放置代码
+
+``` bash
+./root
+├── ...
+│   ├── mock/                               // 模拟请求
+├── src                                     
+│   ├── components                          
+│   │   ├── platformCom                     // 平台通用组件
+│   │   │   ├── ...
+│   │   │   ├── install.js                  // 平台组件全局注册
+│   │   ├── customCom                       // 项目组件
+│   │   │   ├── global/                     // 项目全局组件
+│   │   │   │   ├── ...     
+│   │   │   │   ├── install.js              // 项目全局组件安装
+│   │   │   ├── locale/                     // 项目局部组件
+│   ├── lang                                // 国际化文件
+│   │   ├── en.js                           
+│   │   ├── zh-cn.js
+│   │   ├── ...
+│   ├── page                                // 项目页面
+│   │   ├── ...                             // 页面名称
+│   │   │   ├── *.vue                       // vue文件
+│   │   │   ├── ...                         
+│   ├── resources                           // 静态资源
+│   │   ├── ...                             
+│   ├── util                                // 通用工具
+│   │   ├── http.js                         // ajax全局设置
+│   │   ├── i18n.js                         // 国际化全局设置
+│   │   ├── amap.js                         // 高德地图注册
+│   │   ├── ...
+│   ├── store                               // vuex状态管理
+│   │   ├── modules/                        // vuex的modules
+│   │   ├── state.js                        
+│   │   ├── getter.js                       
+│   │   ├── mutations.js                    
+│   │   ├── actions.js                      
+│   │   ├── store.js                        
+│   ├── router
+│   │   ├── asyncRouter.js                  // 异步路由表
+│   │   ├── directAccess.js                 // 直接访问路由表(预留)
+│   │   ├── index.js                        // vue-router路由配置
+│   ├── index.html                          // 单文件入口渲染模板
+│   ├── index.vue                           // 首页vue
+│   ├── main.js                             // webpack入口文件
+├── ...
+```
+
+
+
+## **更新计划**
+
+>接下来将会全体迁移到ElementUI v2.0，因为2.0实在是更新了很多东西，很有用（不过不一定在本项目中体现）。在此之前会放出一个ElementUI v1.x的release版本，同时该release版本会单独成为一个独立的分支，以便后期发现bug时进行再次修改。webpack可能会升级到4.x，不过需要看看是否有BUG。
+
+迁移前的工作：
+- 清理不必要的文件和多余的代码，让项目更加干净一些
+- 路由表配置方面会重写，主要是干掉又臭又长的异步组件加载方式
+- 页面权限看看有没有更好的解决方法，博客留言的信息其中一个很有帮助，感谢
+- 增加一些简单的表单页面和表格页面，让项目显的完整些（其实我不喜欢写表单，因为照着文档拼起来就行了，纯体力劳动，我懒的）
+
+
+迁移后的工作：
+- echarts更新到4.x了，性能更好了（跃跃欲试）
+- 高德地图也更新了，增加了很多功能（提不起劲）
+- 重点为界面UI。打算单独画一个我认为好看的UI，这部分需要一定的设计时间，可能会很长（主要还是取决于工作忙闲，残念~）
+- 还是要加个字体文件吧，希望能找到好看的字体图标
+- 页面内容全面国际化（英语也就那样）
+- 【挖坑】可能会加入D3，做一些大数据相关的简单图表示例
+- 【挖坑】可能会加入three.js，做一个简单的webGL，也有可能不会发布到项目中
+
+---
+
+**废弃的更新计划，下个版本后删除**
+
+- ~~修复 多语言在单文件组件中无法切换的BUG~~
+- ~~高德地图及echarts组件化~~
+
+  ~~当前加载方式属于一次性注册，可以进一步组件化。~~
+- ~~文件目录优化~~
+
+  ~~当前组件目录可能过于冗余，以后可能会进行合并。或者增加分支，把真正的源放到另外的分支中，本分支只面向大众一般情况。~~
+- ~~更好的组件加载方式~~
+
+  ~~当前异步组件加载方式看着很别扭，同时会有过多的script和style标签，需要后续优化。~~
+- ~~完善打包策略~~
+
+  ~~当前打包策略并不完善。理想中的策略应该是所有第三方组件打包在一起，业务与首页分离，即最后应该是vendor(lib)、home/index、page（相同业务或相同菜单在一起）。~~
+- 界面UI重新定制，形成完整的主题。
+- ~~完全的优雅的主题切换方式~~
+  
+  ~~当前其实并没有完成主题切换方式，只是更改了布局。当前CSS写法方面在面对主题切换时遇到很大的问题，初步想法是不在 `.vue` 文件中编写css，把所有的css提到单独文件中，以便管理。主题切换则采用加载固定CSS文件的方式。这里会继续写一个博客。~~
+
+- ElementUI  v2.0更新，更新前会发布release版本
+- ~~消息推送~~(咕咕咕，鸽了，以后也不会做了)

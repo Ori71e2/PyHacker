@@ -10,6 +10,7 @@
 <script>
 import { mapState } from 'vuex'
 import navItem from './navItem'
+
 export default {
     data() {
         return {

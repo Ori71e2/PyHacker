@@ -2,8 +2,7 @@ import axios from '@/util/ajax'
 // import { Message } from 'element-ui';
 
 const state = {
-    // 权限获取方式： 每次跳页获取(pageChange)，暂时无法实现，因router未提供覆盖事件 
-    // 目前的获取方式： 登录后一次性获取(login) default:login
+    // 权限获取方式： 每次跳页获取(pageChange)，暂时无法实现，因router未提供覆盖事件 / 登录后一次性获取(login) default:login
     mode: 'login',
     // 完整权限列表（菜单列表）
     list: []
@@ -21,7 +20,7 @@ const mutations = {
 }
 
 const actions = {
-    // get user permission list
+    // 获取权限列表
     getPermission({commit, rootState}){
         return new Promise((resolve, reject) =>{
             let uid = rootState.uid

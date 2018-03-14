@@ -1,17 +1,16 @@
-// Router Control
+// 路由控制
 // {
-//    path: Router Path,
-//    components: r => require.ensure([], () => r(require('Router Page')), 'Filename Packed')
-//
+//     path: 路由地址,
+//     component: r => require.ensure([], () => r(require('路由页面')), '打包后的文件名'),
+// }
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '@/store'
+import store from '../store'
 import Cookies from 'js-cookie'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import whiteList from './direct-access'
-import asyncRouter from './async-router'
-
+import whiteList from './directAccess'
+import asyncRouter from './asyncRouter'
 
 // 页面刷新时，重新赋值token
 if (Cookies.get('token')) {
@@ -52,48 +51,47 @@ function routerMatch(permission, asyncRouter){
     })
 }
 
-// default route table, no permission need
-const routes = [
-    {
+// 默认路由表，不需要权限
+const routes = [{
         path: '/',
-        // redirect
+        // 重定向
         redirect: '/home'
     },
     {
         path: '/login',
-        component: r => require.ensure([], () => r(require('@/page/login/login')), 'login')
+        component: r => require.ensure([], () => r(require('../page/login/login')), 'login')
     },
     {
         path: '/defaultLayout',
-        component: r => require.ensure([], () => r(require('@/page/layout/layout')), 'layout'),
+        component: r => require.ensure([], () => r(require('../page/layout/layout')), 'layout'),
         meta:{
             permission:[]
         },
-        // User login verification needs to be done 
+        // 需要进行用户登录验证
         children: [{
             path: '/home',
-            component: r => require.ensure([], () => r(require('@/page/home/home')), 'home'),
+            component: r => require.ensure([], () => r(require('../page/home/home')), 'home'),
         }]
     },
     {
         path: '/error',
-        component: r => require.ensure([], () => r(require('@/page/error/error')), 'error'),
+        component: r => require.ensure([], () => r(require('../page/error/error')), 'error'),
         children: [
             {
                 path: '/error/401',
-                component: r => require.ensure([], () => r(require('@/page/error/401')), 'error')
+                component: r => require.ensure([], () => r(require('../page/error/401')), 'error')
             },
             {
                 path: '/error/403',
-                component: r => require.ensure([], () => r(require('@/page/error/403')), 'error')
+                component: r => require.ensure([], () => r(require('../page/error/403')), 'error')
             },
             {
                 path: '/error/404',
-                component: r => require.ensure([], () => r(require('@/page/error/404')), 'error')
+                component: r => require.ensure([], () => r(require('../page/error/404')), 'error')
             },
             {
                 path: '/error/500',
-                component: r => require.ensure([], () => r(require('@/page/error/500')), 'error')
+                component: r => require.ensure([], () => r(require('../page/error/500')), 'error')
             }
         ]
     }
@@ -101,13 +99,13 @@ const routes = [
 
 
 const router = new VueRouter({
-    mode: 'history',        // history mode, need backend support
+    mode: 'history',
     routes: routes
 })
 
-// Verification before Routing jump
+// 路由跳转前验证
 router.beforeEach((to, from, next) => {
-    // start the progress bar
+    // 开启进度条
     NProgress.start();
     
     // 判断用户是否登录

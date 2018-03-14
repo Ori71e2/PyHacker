@@ -5,13 +5,13 @@ import { Message } from 'element-ui';
 const state = {
     // uid
     uid: '',
-    // User name
+    // 用户名
     name: '',
     // token
     token: '',
-    // Roler
+    // 角色分组
     role: ''
-    // head sculpture
+    // 头像
     // avatar: ''
 }
 
@@ -48,7 +48,7 @@ const mutations = {
 }
 
 const actions = {
-    // login by email
+    // 邮箱登录
     loginByEmail({ commit, rootState }, userInfo) {
         return new Promise((resolve, reject) => {
             axios({
@@ -60,8 +60,6 @@ const actions = {
             }).then(res => {
                 const data = res.data
                 if(data.login){
-                    // set uid, name, token get grom server
-                    // set lang from rootState
                     commit('setUID', data.uid)
                     commit('setName', data.name)
                     commit('setToken', data.token)

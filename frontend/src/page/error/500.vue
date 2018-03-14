@@ -1,15 +1,15 @@
 <template>
     <div>
-        500: An Unknown Error In The System!
-        <a @click="back">Back To Previous Page</a>
+        500:系统出现未知错误
+        <a @click="back">返回首页</a>
     </div>
 </template>
 
 <script>
     export default {
-        mehtods: {
-            back() {
-                this.$router.go(-1);
+        methods: {
+            back(){
+                this.$router.replace('home')
             }
         }
     }
