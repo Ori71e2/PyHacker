@@ -1,7 +1,20 @@
 <template>
-    <div>
-        500:系统出现未知错误
-        <a @click="back">返回首页</a>
+    <div class="sys-error">
+        <div class="error-layouts-bg">
+            <div class="agileits-content">
+                
+                <h2><span>5</span><span>0</span><span>0</span></h2>
+            </div>
+            <div class="error-layouts-right">
+                <div class="error-ls-text">
+                    <h3>我们很抱歉！</h3>
+                    <h4 class="error--agileits2">系统出现未知错误。</h4>
+                    <p>请 <a @click="back">返回上一页</a> 或发送邮件 <a href="Ori71e2@gmail.com">Ori71e2@gmail.coms</a> 联系我们</p>
+                    <p class="copyright">Copyright &copy; 2017.Company name All rights reserved.</p>
+                </div>        
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </div>
 </template>
 
@@ -9,7 +22,7 @@
     export default {
         methods: {
             back(){
-                this.$router.replace('home')
+                this.$router.go(-1)
             }
         }
     }

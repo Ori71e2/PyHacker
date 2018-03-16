@@ -15,7 +15,7 @@ export default {
         }
     },
     defaultOption: {
-        center: [116.397428, 39.90923],
+        center: [118.722912, 33.726252],
         resizeEnable: true,
         zoom: 10
     }
