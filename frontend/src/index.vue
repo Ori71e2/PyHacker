@@ -5,7 +5,13 @@
 </template>
 
 <script>
-export default {
-    
+import changeTheme from "@/util/changeTheme"
+export default { 
+    mounted() {
+        this.$nextTick(() => {
+            changeTheme("theme-default")
+            this.$store.commit("setThemeColor", "default")
+        })
+    }
 }
 </script>
