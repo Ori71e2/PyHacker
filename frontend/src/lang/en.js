@@ -3,7 +3,11 @@ export default {
     password: 'Password',
     login: 'Login',
     forgetPassword: 'Forget Password?',
-    loginTip: 'The login result is random. Just fill in the verification code',
+    loginTip: 'The login result is random. Just fill in the captcha',
     editpassword: 'Edit Password',
-    logout: 'Logout'
+    logout: 'Logout',
+    errMsg: {
+        inputRequired: 'Please Input {cont}',
+        selectRequired: 'Please Select {cont}'
+    }
 }
