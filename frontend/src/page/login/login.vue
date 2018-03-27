@@ -111,7 +111,7 @@
                 this.toggleLang(val)
             },
             setTheme(val){
-                if(val == this.lang) return
+                if(val == this.theme) return
                 changeTheme(`theme-${val}`)
                 this.$store.commit("setThemeColor", val)
             }
