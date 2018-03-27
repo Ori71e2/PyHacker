@@ -40,7 +40,7 @@ $baseImageURL: '~sysStatic/images/default/' !default;
 // 组件设置
 //-------------------------------
 // login
-$loginBg: url($baseImageURL+"login.jpg") center center no-repeat!default;
+$loginBg: url($baseImageURL+"login.jpg") center center no-repeat !default;
 $loginBtn: #424f60 !default;
 $loginTextColor: $lightGray !default;
 $loginErrTextColor: $red !default;
