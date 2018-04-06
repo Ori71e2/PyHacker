@@ -4,15 +4,15 @@
             <v-pageNotes>本层为浮动层。本页实际路径: src/page/example/map.vue</v-pageNotes>
         </div>
         <div id="container">
-            <map1></map1>
+            <maplayer></maplayer>
         </div>
     </div>
 </template>
 
 <script>
-import map1 from './map1'
+import maplayer from './layer/mapLayer'
 export default {
-    components: {map1}
+    components: {maplayer}
 }
 </script>
 <style lang="scss" scoped>
