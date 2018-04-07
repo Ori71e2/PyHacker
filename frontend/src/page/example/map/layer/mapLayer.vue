@@ -20,21 +20,25 @@ export default {
                 map.addControl(new AMap.Scale())
             })
             var canvas = document.createElement('canvas');
-            var pos = map.lngLatToContainer([118.716184,33.720615]);
-            alert(pos)
             canvas.width = map.getSize().width;
             canvas.height = map.getSize().height;
             var ctx = canvas.getContext('2d');
-            ctx.beginPath();
-            ctx.arc(750, 259.5, 50, 0, 2*Math.PI);
-            ctx.stroke();
+            var pos, started
             var customLayer = new AMap.CustomLayer(canvas, {
                         zooms: [3,20],
                         zIndex: 12
                     });
             customLayer.setMap(map);
             function onRender() {
-       
+                pos = map.lngLatToContainer([118.716184,33.720615]);
+                draw();
+
+            }
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 50, 0, 2*Math.PI);
+                ctx.stroke();
             }
             customLayer.render = onRender;
         }
