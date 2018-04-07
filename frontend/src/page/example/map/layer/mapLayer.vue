@@ -5,7 +5,8 @@
 <script>
 /* eslint-disable */
 import amap from '@/util/amap'
-var map
+var map, eqCanvas, dyCanvas, staCanvas
+var canvas = new Array();
 export default {
     mounted() {
         amap.load(() => {
@@ -19,12 +20,21 @@ export default {
                 map.addControl(new AMap.ToolBar())
                 map.addControl(new AMap.Scale())
             })
-            var canvas = document.createElement('canvas');
-            canvas.width = map.getSize().width;
-            canvas.height = map.getSize().height;
-            var ctx = canvas.getContext('2d');
+            for (var i=0; i<3; i++) {
+                canvas[i]= document.createElement('canvas');
+                canvas[i].width = map.getSize().width;
+                canvas[i].height = map.getSize().height;
+            }
+            [eqCanvas, dyCanvas, staCanvas] = canvas;
+            /*
+            eqCanvas = document.createElement('canvas');
+            eqCanvas.width = map.getSize().width;
+            eqCanvas.height = map.getSize().height;
+            */
+           
+            var ctx = eqCanvas.getContext('2d');
             var pos, started
-            var customLayer = new AMap.CustomLayer(canvas, {
+            var customLayer = new AMap.CustomLayer(eqCanvas, {
                         zooms: [3,20],
                         zIndex: 12
                     });
@@ -35,7 +45,7 @@ export default {
 
             }
             function draw() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.clearRect(0, 0, eqCanvas.width, eqCanvas.height);
                 ctx.beginPath();
                 ctx.arc(pos.x, pos.y, 50, 0, 2*Math.PI);
                 ctx.stroke();
