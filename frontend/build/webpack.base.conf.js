@@ -10,7 +10,7 @@ function resolve(dir) {
 
 module.exports = {
     entry: {
-        app: './src/main.dev.js'
+        app: './src/main.js'
     },
     output: {
         path: config.build.assetsRoot,
@@ -48,23 +48,21 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                include: [resolve('src'), resolve('test')]
+                include: [resolve('src'), resolve('test'), resolve('mock')]
             },
-            //{
-            //    //test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-            //    test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-            //    loader: 'url-loader',
-            //    options: {
-            //        limit: 10000,
-            //        name: utils.assetsPath('img/[name].[hash:7].[ext]')
-            //    }
-            //},
+            // {
+            //     test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+            //     loader: 'url-loader',
+            //     options: {
+            //         limit: 10000,
+            //         name: utils.assetsPath('img/[name].[hash:7].[ext]')
+            //     }
+            // },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-
                     name(file){
                         return utils.keepAssetsPath({
                             // 打包后文件名

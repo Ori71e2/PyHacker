@@ -9,7 +9,6 @@ $darkGray: #666 !default;
 $darkerGray: #333 !default;
 $red: #d45b5b !default;
 
-
 // 主题颜色
 //-------------------------------
 $themeColor: #283443 !default;
@@ -20,7 +19,6 @@ $linkColor: #42b983 !default;
 $borderColor: #d2d2d2 !default;
 $pageColor: $white !default;
 $shadowColor: rgba(0,0,0,0) !default;
-
 
 // 字体及图片设置
 //-------------------------------
@@ -39,6 +37,7 @@ $baseImageURL: '~sysStatic/images/default/' !default;
 
 // 组件设置
 //-------------------------------
+
 // login
 $loginBg: url($baseImageURL+"login.jpg") center center no-repeat !default;
 $loginBtn: #424f60 !default;
@@ -63,6 +62,7 @@ $headerFontSize: 20px !default;
 $leftNavWidth: 160px !default;
 $sidenavBgColor: $themeColorLighter !default;
 $sidenavCurrent: #20a0ff !default;
+$sidenavBorder: none !default;
 
 // sysNotes
 $notesBgColor: $lighterGray !default;

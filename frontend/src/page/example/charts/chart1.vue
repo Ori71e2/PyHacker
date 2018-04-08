@@ -6,7 +6,6 @@
 import lodash from 'lodash'
 import echarts from 'echarts'
 import '@/util/echarts.theme.default'
-
 export default {
     data() {
         return {
@@ -84,9 +83,10 @@ export default {
     }
 }
 </script>
+
 <style lang="scss" scoped>
-    .chart-area{
-        width: 100%;
-        height: 400px;
-    }
+.chart-area{
+    width: 100%;
+    height: 400px;
+}
 </style>
