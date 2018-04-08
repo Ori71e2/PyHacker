@@ -1,30 +1,29 @@
 <script>
-var canvas = document.createElement('canvas');
-var x, y = map.lnglatToContainer([118.716184,33.720615]);
-canvas.width = map.getSize().width;
-canvas.height = map.getSize().height;
-var ctx = canvas.getContext('2d');
-ctx.beginPath();
-ctx.arc(x, y, 50, 0, 2*Math.PI);
-ctx.stroke();
-var customLayer = new AMap.CustomLayer(canvas, {
-            zooms: [3,8],
-            zIndex: 12
-        });
-customLayer.setMap(map);
-function onRender() {
-    draw();
-}
-customLayer.render = onRender;
-
+var canvas, layer, ctx, pos
 export default {
-    mounted() {
-        
-    },
-    methods: {
-        init() {
 
-        }
+    init(map) {
+        canvas = document.createElement('canvas');
+        canvas.width = map.getSize().width;
+        canvas.height = map.getSize().height;
+        customLayer = new AMap.CustomLayer(canvas, {
+                        zooms: [3,20],
+                        zIndex: 12
+                    });
+        customLayer.setMap(map);
+        customLayer.render = onRender;
+        ctx = canvas.getContext('2d');
+
+    },
+    onRender() {
+        pos = map.lngLatToContainer([118.716184,33.720615]);
+        draw();
+    },
+    draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 50, 0, 2*Math.PI);
+        ctx.stroke();
     }
 }
 </script>

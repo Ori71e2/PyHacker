@@ -5,6 +5,7 @@
 <script>
 /* eslint-disable */
 import amap from '@/util/amap'
+import eqLayer from './equipmentLayer'
 var map, eqCanvas, dyCanvas, staCanvas
 var canvas = new Array();
 export default {
@@ -31,29 +32,34 @@ export default {
             eqCanvas.width = map.getSize().width;
             eqCanvas.height = map.getSize().height;
             */
-           
-            var ctx = eqCanvas.getContext('2d');
-            var pos, started
-            var customLayer = new AMap.CustomLayer(eqCanvas, {
+            
+
+            var eqLayer = new AMap.CustomLayer(eqCanvas, {
                         zooms: [3,20],
                         zIndex: 12
                     });
-            customLayer.setMap(map);
-            function onRender() {
+            eqLayer.setMap(map);
+            eqLayer.render = eqOnRender;
+
+            var eqCtx = eqCanvas.getContext('2d');
+            var pos, started
+            function eqOnRender() {
                 pos = map.lngLatToContainer([118.716184,33.720615]);
-                draw();
+                eqDraw();
 
             }
-            function draw() {
-                ctx.clearRect(0, 0, eqCanvas.width, eqCanvas.height);
-                ctx.beginPath();
-                ctx.arc(pos.x, pos.y, 50, 0, 2*Math.PI);
-                ctx.stroke();
+            function eqDraw() {
+                eqCtx.clearRect(0, 0, eqCanvas.width, eqCanvas.height);
+                eqCtx.beginPath();
+                eqCtx.arc(pos.x, pos.y, 50, 0, 2*Math.PI);
+                eqCtx.stroke();
             }
-            customLayer.render = onRender;
+            
         }
     }
 }
+
+
 </script>
 <style scoped>
 .map-container{
