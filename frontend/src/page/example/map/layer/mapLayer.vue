@@ -54,6 +54,8 @@ export default {
                 eqCtx.arc(pos.x, pos.y, 50, 0, 2*Math.PI);
                 eqCtx.stroke();
             }
+
+            
             
         }
     }
