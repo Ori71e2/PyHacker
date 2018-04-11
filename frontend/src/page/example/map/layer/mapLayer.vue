@@ -5,7 +5,6 @@
 <script>
 /* eslint-disable */
 import amap from '@/util/amap'
-import eqLayer from './equipmentLayer'
 var map, eqCanvas, dyCanvas, staCanvas
 var canvas = new Array();
 export default {
@@ -21,19 +20,16 @@ export default {
                 map.addControl(new AMap.ToolBar())
                 map.addControl(new AMap.Scale())
             })
+
+
+          
             for (var i=0; i<3; i++) {
                 canvas[i]= document.createElement('canvas');
                 canvas[i].width = map.getSize().width;
                 canvas[i].height = map.getSize().height;
             }
             [eqCanvas, dyCanvas, staCanvas] = canvas;
-            /*
-            eqCanvas = document.createElement('canvas');
-            eqCanvas.width = map.getSize().width;
-            eqCanvas.height = map.getSize().height;
-            */
-            
-
+           
             var eqLayer = new AMap.CustomLayer(eqCanvas, {
                         zooms: [3,20],
                         zIndex: 12
@@ -54,8 +50,9 @@ export default {
                 eqCtx.arc(pos.x, pos.y, 50, 0, 2*Math.PI);
                 eqCtx.stroke();
             }
+       
 
-            
+
             
         }
     }
