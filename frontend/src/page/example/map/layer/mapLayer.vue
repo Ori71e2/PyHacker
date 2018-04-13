@@ -5,6 +5,7 @@
 <script>
 /* eslint-disable */
 import amap from '@/util/amap'
+import EqLayer from './equipmentLayer'
 var map, eqCanvas, dyCanvas, staCanvas
 var canvas = new Array();
 export default {
@@ -20,8 +21,11 @@ export default {
                 map.addControl(new AMap.ToolBar())
                 map.addControl(new AMap.Scale())
             })
+            var eqLayer = new EqLayer(map, AMap);
+            eqLayer.layer.setMap(map);
+            //eqLayer.layer.render =  eqLayer.onRender();
 
-
+/*
           
             for (var i=0; i<3; i++) {
                 canvas[i]= document.createElement('canvas');
@@ -51,7 +55,7 @@ export default {
                 eqCtx.stroke();
             }
        
-
+*/
 
             
         }
