@@ -20,7 +20,7 @@ export default {
             AMap.plugin(['AMap.ToolBar', 'AMap.Scale', 'AMap.CustomLayer'], function () {
                 map.addControl(new AMap.ToolBar())
                 map.addControl(new AMap.Scale())
-            })s
+            })
             var eqLayer = new EqLayer(map, AMap);
             eqLayer.layer.setMap(map);
             //eqLayer.layer.render =  eqLayer.onRender();

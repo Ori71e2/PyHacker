@@ -13,6 +13,7 @@ class EqLayer {
         this.layer.render =  this.onRender();
     }
     draw() {
+        this.pos = this.map.lngLatToContainer([118.716184,33.720615]);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.beginPath();
         this.ctx.arc(this.pos.x, this.pos.y, 50, 0, 2*Math.PI);
@@ -21,11 +22,7 @@ class EqLayer {
 
     onRender() { 
         return () => {
-        this.pos = this.map.lngLatToContainer([118.716184,33.720615]);
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.beginPath();
-        this.ctx.arc(this.pos.x, this.pos.y, 50, 0, 2*Math.PI);
-        this.ctx.stroke();       
+            this.draw();    
         }
     }
 }
