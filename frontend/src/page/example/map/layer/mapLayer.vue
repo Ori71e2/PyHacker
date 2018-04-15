@@ -6,6 +6,7 @@
 /* eslint-disable */
 import amap from '@/util/amap'
 import EqLayer from './equipmentLayer'
+import StaLayer from './staticLayer.js'
 var map, eqCanvas, dyCanvas, staCanvas
 var canvas = new Array();
 export default {
@@ -22,7 +23,10 @@ export default {
                 map.addControl(new AMap.Scale())
             })
             var eqLayer = new EqLayer(map, AMap);
-            eqLayer.layer.setMap(map);
+            //eqLayer.layer.setMap(map);
+
+            var staLayer = new StaLayer(map, AMap);
+
 
   
             

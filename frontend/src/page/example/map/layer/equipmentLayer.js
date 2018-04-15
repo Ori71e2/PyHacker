@@ -1,23 +1,29 @@
 'use strict';
+import SVG from 'svg.js'
 class EqLayer {
     constructor(map, AMap) {
         this.map = map
-        this.canvas = document.createElement('canvas');
-        this.canvas.width = map.getSize().width;
-        this.canvas.height = map.getSize().height;
-        this.layer = new AMap.CustomLayer(this.canvas, {
+        this.width = this.map.getSize().width
+        this.height = this.map.getSize().height
+        this.svg = document.createElement('svg');
+        //this.svg.width = map.getSize().width;
+        //this.svg.height = map.getSize().height;
+        this.layer = new AMap.CustomLayer(this.svg, {
                             zooms: [3, 20],
                             zIndex: 12
-                        })
-        this.ctx = this.canvas.getContext('2d');
+                        });
+        //this.svgDraw = SVG(this.svg).size(this.map.getSize().width, this.map.getSize().height);
+        this.svgDraw = SVG(this.svg).size(this.width, this.height);
         this.layer.render =  this.onRender();
+        this.layer.setMap(map);
     }
     draw() {
+        //this.pos = this.map.lngLatToContainer([118.716184,33.720615]);
         this.pos = this.map.lngLatToContainer([118.716184,33.720615]);
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.beginPath();
-        this.ctx.arc(this.pos.x, this.pos.y, 50, 0, 2*Math.PI);
-        this.ctx.stroke();        
+        this.svgDraw.clear();
+        var x = this.pos.x;
+        var y = this.pos.y;
+        this.svgDraw.line(x, y, x+100, y+50).stroke({width:1});
     }
 
     onRender() { 

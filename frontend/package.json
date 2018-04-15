@@ -17,6 +17,7 @@
     "lodash": "^4.17.4",
     "mockjs": "^1.0.1-beta3",
     "nprogress": "^0.2.0",
+    "svg.js": "^2.6.4",
     "vue": "^2.5.2",
     "vue-i18n": "^7.3.2",
     "vue-router": "^2.6.0",
