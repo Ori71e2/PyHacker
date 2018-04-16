@@ -32,9 +32,10 @@ class EqLayer {
         //var y = this.pos.y;
         this.svgDraw.polyline(this.posArray.GpsToCo(this.map)).fill('none').stroke({width:1});
         var rect = this.svgDraw.rect(50, 50).x(pos.x).y(pos.y);
-        rect.click(this.click());
-        //rect.fire('mouseup');
-        //rect.on('mouseup', this.click());
+        //rect.click(this.click());
+        rect.on('click', this.click());
+        //this.layer.on('click', function() {rect.fire('mouseover')});
+        //rect.fire('mouseover');
     }
 
     onRender() { 
