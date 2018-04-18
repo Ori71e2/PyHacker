@@ -12,21 +12,6 @@ var permissionList = []
 
 function initRoute(router){
     return new Promise((resolve) => {
-<<<<<<< HEAD
-        // 创建需要校验的参数数组
-        function addPermision(permission){
-            permission.forEach((item) => {
-                if(item.child && item.child.length){
-                    // 递归
-                    addPermision(item.child)
-                }
-                router.forEach((s) => {
-                    if(s.path == item.path){
-                        s.meta.permission = item.permission
-                        asyncLayout[0].children.push(s)
-                        return
-                    }
-=======
         if(permissionList.length == 0){
             console.log("没有权限数据，正在获取")
             store.dispatch('auth/getNavList').then(() => {
@@ -41,19 +26,12 @@ function initRoute(router){
                         }
                     })
                     resolve()
->>>>>>> theme
                 })
             })
         } else{
             console.log("已有权限数据")
             resolve()
         }
-<<<<<<< HEAD
-        asyncLayout[0].children = []
-        addPermision(permission)
-        resolve(asyncLayout)
-=======
->>>>>>> theme
     })
 }
 
