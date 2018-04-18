@@ -1,3 +1,4 @@
+
 const hasPermission = {
     install (Vue){
         Vue.directive('hasPermission', {

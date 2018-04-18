@@ -1,6 +1,6 @@
 {
   "name": "vue-backend",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "description": "前后端分离VUE类模板项目工程",
   "author": "harsima",
   "private": true,
@@ -85,6 +85,6 @@
     "iOS >= 8",
     "Chrome >= 46",
     "ff >= 43",
-    "ie <= 9"
+    "ie >= 9"
   ]
 }
