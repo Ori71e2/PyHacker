@@ -17,7 +17,7 @@ const actions = {
             }).then((res) => {
                 // 存储权限列表
                 //commit('setList', res.data)
-                alert(res);
+                //alert(res);
                 resolve(res)
             }).catch(() => {
                 reject()
