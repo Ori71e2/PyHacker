@@ -5,30 +5,7 @@ class StaMarker {
         this.AMap = AMap
         this.treeMarkers = [];
         this.treeMarkersInfo = [];
-        /*
-        [{
-            icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b1.png',
-            position: [118.708555, 33.723568]
-        }, {
-            icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b2.png',
-            position: [118.703406, 33.722462]
-        }, {
-            icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b3.png',
-            position: [118.707182, 33.719731]
-        }];
-        */
-        // 数组forEach回调函数，要把this当参数传递进去
-        /*
-        this.treeMarkersInfo.forEach(function(marker) {
-            var marker = new this.AMap.Marker({
-                map: this.map,
-                icon: marker.icon,
-                position: [marker.position[0], marker.position[1]],
-                offset: new this.AMap.Pixel(-12, -36)
-            });
-            this.treeMarkers.push(marker);
-        }, this);  
-        */
+        this.infoWindow = new this.AMap.InfoWindow({offset: new this.AMap.Pixel(0, -30)});
     }
     // 若是采取实时更新，则需要先把之前的marker清除，可以采取优化，比较不同数据，清除新增。
     drawTreeMarker(data) {
@@ -40,8 +17,22 @@ class StaMarker {
                 position: [marker.position[0], marker.position[1]],
                 offset: new this.AMap.Pixel(-12, -36)
             });
+            console.log('fail1');
+            marker.content = '我是Marker';
+            console.log('fail2');
+            // 回调函数，要注意第三个参数 context
+            marker.on('click', this.markerClick, this);
+            console.log('fail3');
+            //marker.emit('click', {target: marker});
+            console.log('fail4');
             this.treeMarkers.push(marker);
-        }, this);  
+        }, this);
+        this.map.setFitView();  
+    }
+
+    markerClick(e) {
+        this.infoWindow.setContent(e.target.content);
+        this.infoWindow.open(this.map, e.target.getPosition());
     }
 }
 export default StaMarker;
