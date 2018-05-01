@@ -23,6 +23,19 @@ const actions = {
                 reject()
             })
         })
+    },
+    getTreeInfo() {
+        return new Promise((resolve, reject) => {
+            axios({
+                url: '/tree',
+                methods: 'post',
+                data: {}
+            }).then((res) => {
+                resolve(res)
+            }).catch(() => {
+                reject()
+            })
+        })
     }
 }
 

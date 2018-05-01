@@ -21,6 +21,7 @@ export default {
             eqDraw: '',
             dyLayer: '',
             map: '',
+            AMap: ''
         }
     },
     mounted() {
@@ -33,10 +34,12 @@ export default {
     },
     methods: {
         ...mapActions({
-            getLine: 'equipment/getLine'
+            getLine: 'equipment/getLine',
+            getTreeInfo: 'equipment/getTreeInfo'
         }),
         init(){
             this.map = new AMap.Map('map1', amap.defaultOption);
+            this.AMap = AMap;
             AMap.plugin(['AMap.ToolBar', 'AMap.Scale'], function () {
                 this.map.addControl(new AMap.ToolBar())
                 this.map.addControl(new AMap.Scale())
@@ -55,17 +58,17 @@ export default {
                 console.log('No Data');
                 return false;
             })
-                new AMap.Marker({
-        map: this.map,
-		position: [118.707182, 33.719731],
-        icon: new AMap.Icon({            
-            size: new AMap.Size(40, 50),  //图标大小
-            image: "http://webapi.amap.com/theme/v1.3/images/newpc/way_btn2.png",
-            imageOffset: new AMap.Pixel(0, -60)
-        })        
-    });
+
             this.staMarker = new StaMarker(this.map, AMap);
-            console.log('Map1');
+            this.getTreeInfo().then(res => {
+                if(res) {
+                    this.staMarker.drawTreeMarker(res);
+                } else {
+                    return false;
+                }
+            }).catch(err => {
+                return false;
+            })
         }
     }
 }
