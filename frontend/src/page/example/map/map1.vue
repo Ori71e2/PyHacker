@@ -1,5 +1,8 @@
 <template>
-    <div id="map1" class="map-container"></div>
+    <div class="map-container">
+        <div id="map1" class="map-container"></div>
+        <div id="panelNav"></div>
+    </div>
 </template>
 
 <script>
@@ -11,7 +14,7 @@ import EqLayer from './layer/equipmentLayer.js'
 import StaMarker from './layer/staticMarker.js'
 import EqDraw from './layer/equipmentDraw.js'
 import DyLayer from './layer/dynamicLayer.js'
-
+import DrivingNav from './tools/drivingNav.js'
 //var map, eqCanvas, dyCanvas, staCanvas
 
 export default {
@@ -20,6 +23,7 @@ export default {
             staMarker: '',
             eqDraw: '',
             dyLayer: '',
+            drivingNav: '',
             map: '',
             AMap: ''
         }
@@ -30,7 +34,7 @@ export default {
         })
     },
     activated() {
-        this.dyLayer = new DyLayer(this.map, AMap);
+        //this.dyLayer = new DyLayer(this.map, AMap);
     },
     methods: {
         ...mapActions({
@@ -46,6 +50,7 @@ export default {
             })
             //var eqLayer = new EqLayer(map, AMap);
             //this.staLayer = new StaLayer(this.map, AMap);
+            // 线路路径图
             this.eqDraw = new EqDraw(this.map, AMap);
             this.getLine().then(res => {
                 if(res) {
@@ -59,6 +64,7 @@ export default {
                 return false;
             })
 
+            // 点标注
             this.staMarker = new StaMarker(this.map, AMap);
             this.getTreeInfo().then(res => {
                 if(res) {
@@ -69,6 +75,10 @@ export default {
             }).catch(err => {
                 return false;
             })
+
+            // 导航功能
+            this.drivingNav = new DrivingNav(this.map, AMap);
+            this.drivingNav.search([118.716087,33.720534], [118.683643,33.763144]);
         }
     }
 }
@@ -77,6 +87,16 @@ export default {
 .map-container{
     width: 100%;
     height: 100%;
+}
+
+#panelNav{
+    position: fixed;
+    background-color: white;
+    max-height: 70%;
+    overflow-y: auto;
+    top: 120px;
+    right: 10px;
+    width: 280px;
 }
 </style>
 
