@@ -2,6 +2,60 @@
     <div class="map-container">
         <div id="map1" class="map-container"></div>
         <div id="panelNav"></div>
+        <div id="panelTools">
+            <el-popover placement="top" trigger="hover">
+                    <div>
+                        <el-checkbox @change="toAlertb('b')">比例尺</el-checkbox>
+                        <el-checkbox @change="toAlert(this)">工具条</el-checkbox>
+                        <el-checkbox @change="toAlert()">工具条方向盘</el-checkbox>
+                        <el-checkbox @change="toAlert()">工具条标尺</el-checkbox>
+                        <el-checkbox @change="toAlert()">显示鹰眼</el-checkbox>
+                        <el-checkbox @change="toAlert()">展开鹰眼</el-checkbox>
+                    </div>
+                <el-button slot="reference" type="primary">
+                    控件<i class="el-icon-arrow-up el-icon--right"></i>
+                </el-button>
+            </el-popover>
+
+            <el-popover placement="top" trigger="hover">
+                <el-checkbox-group v-model="checkedToolsList" @change="handleCheckedToolsChange">
+                    <el-checkbox id="scale" v-model="scale" label="比例尺" @change="toggleScale"></el-checkbox>
+                    <el-checkbox id="toolBar" v-model="toolBar" label="工具条" @change="toggleToolBar"></el-checkbox>
+                    <el-checkbox id="toolBarDirection" v-model="toolBarDirection" label="工具条方向盘" disabled @change="toggleToolBarDirection"></el-checkbox>
+                    <el-checkbox id="toolBarRuler" v-model="toolBarRuler" label="工具条标尺" disabled @change="toggleToolBarRuler"></el-checkbox>
+                    <el-checkbox id="overView" v-model="overViewShow" label="显示鹰眼" @change="toggleOverViewShow"></el-checkbox>
+                    <el-checkbox id="overViewOpen" v-model="overViewOpen" label="展开鹰眼" disabled @change="toggleOverViewOpen"></el-checkbox>
+                </el-checkbox-group>
+                <el-button slot="reference" type="primary">
+                    控件<i class="el-icon-arrow-up el-icon--right"></i>
+                </el-button>
+            </el-popover>
+
+            <el-dropdown size="medium" type="primary">
+                <el-button type="primary">
+                    线路<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>黄金糕</el-dropdown-item>
+                    <el-dropdown-item>狮子头</el-dropdown-item>
+                    <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                    <el-dropdown-item>双皮奶</el-dropdown-item>
+                    <el-dropdown-item>蚵仔煎</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+            <el-dropdown size="medium" type="primary">
+                <el-button type="primary">
+                    标注<i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>黄金糕</el-dropdown-item>
+                    <el-dropdown-item>狮子头</el-dropdown-item>
+                    <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                    <el-dropdown-item>双皮奶</el-dropdown-item>
+                    <el-dropdown-item>蚵仔煎</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+        </div>
     </div>
 </template>
 
@@ -14,7 +68,8 @@ import EqLayer from './layer/equipmentLayer.js'
 import StaMarker from './layer/staticMarker.js'
 import EqDraw from './layer/equipmentDraw.js'
 import DyLayer from './layer/dynamicLayer.js'
-import DrivingNav from './tools/drivingNav.js'
+import DrivingNav from './function/drivingNav.js'
+import ToolsControl from './function/toolsControl.js'
 //var map, eqCanvas, dyCanvas, staCanvas
 
 export default {
@@ -24,8 +79,17 @@ export default {
             eqDraw: '',
             dyLayer: '',
             drivingNav: '',
+            toolsControl: '',
             map: '',
-            AMap: ''
+            AMap: '',
+            checkedToolsList: [],
+            
+            scale: false,
+            toolBar: false,
+            toolBarDirection: false,
+            toolBarRuler: false,
+            overViewShow: false,
+            overViewOpen: false
         }
     },
     mounted() {
@@ -36,6 +100,7 @@ export default {
     activated() {
         //this.dyLayer = new DyLayer(this.map, AMap);
     },
+
     methods: {
         ...mapActions({
             getLine: 'equipment/getLine',
@@ -44,10 +109,14 @@ export default {
         init(){
             this.map = new AMap.Map('map1', amap.defaultOption);
             this.AMap = AMap;
-            AMap.plugin(['AMap.ToolBar', 'AMap.Scale'], function () {
-                this.map.addControl(new AMap.ToolBar())
-                this.map.addControl(new AMap.Scale())
-            })
+            AMap.plugin(['AMap.ToolBar', 'AMap.Scale', 'AMap.OverView'], function () {
+                /*
+                this.map.addControl(new AMap.ToolBar());
+                this.map.addControl(new AMap.Scale());
+                this.map.addControl(new AMap.OverView());
+                */
+               
+            });
             //var eqLayer = new EqLayer(map, AMap);
             //this.staLayer = new StaLayer(this.map, AMap);
             // 线路路径图
@@ -78,7 +147,37 @@ export default {
 
             // 导航功能
             this.drivingNav = new DrivingNav(this.map, AMap);
-            this.drivingNav.search([118.716087,33.720534], [118.683643,33.763144]);
+            //this.drivingNav.search([118.716087,33.720534], [118.683643,33.763144]);
+
+            // 设置toolBar
+            this.toolsControl = new ToolsControl(this.map, AMap);
+
+            var scale = new AMap.Scale({
+                    visible: true
+                });
+        },
+        handleCheckedToolsChange(value) {
+            //this.toolsBar.changeTools(value);
+        },
+        toggleScale() {
+            this.scale = this.scale ? 0 : 1;
+            console.log(this.scale);
+            this.toolsControl.toggleScale(this.scale)
+        },
+        toggleToolBar() {
+            this.toolsControl.toggleToolBar(this.toolBar)
+        },
+        toggleToolBarDirection() {
+            this.toolsControl.toggleToolBarDirection(this.toolBarDirection)
+        },
+        toggleToolBarRuler() {
+            this.toolsControl.toggleToolBarRuler(this.toolBarRuler)
+        },
+        toggleOverViewShow() {
+            this.toolsControl.toggleOverViewShow(this.overViewShow)
+        },
+        toggleOverViewOpen() {
+            this.toolsControl.toggleOverViewOpen(this.overViewOpen)
         }
     }
 }
@@ -97,6 +196,22 @@ export default {
     top: 120px;
     right: 10px;
     width: 280px;
+}
+
+#panelTools{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+.el-dropdown {
+    vertical-align: top;
+}
+.el-dropdown + .el-dropdown {
+    margin-left: 15px;
+}
+.el-icon-arrow-down {
+    font-size: 12px;
 }
 </style>
 
