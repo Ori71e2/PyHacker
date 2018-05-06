@@ -3,7 +3,8 @@
         <div id="map1" class="map-container"></div>
         <div id="panelNav"></div>
         <div id="panelTools">
-            <tools-control ref="toolsControl"></tools-control>
+            <tools-control class="panelTools" ref="toolsControl"></tools-control>
+            <static-marker class="panelTools" ref="staticMarker"></static-marker>
         </div>
     </div>
 </template>
@@ -14,17 +15,15 @@
 import { mapState, mapMutations, mapActions } from 'vuex'
 import amap from '@/util/amap'
 import EqLayer from './layer/equipmentLayer.js'
-import StaMarker from './layer/staticMarker.js'
 import EqDraw from './layer/equipmentDraw.js'
 import DyLayer from './layer/dynamicLayer.js'
 import DrivingNav from './function/drivingNav.js'
-import ToolsControl from './function/toolsControl.js'
 
-import toolsControl from './function/toolsControl/index.vue'
+import toolsControl from './function/toolsControl'
+import staticMarker from './function/staticMarker'
 
 export default {
-    ame: 'toolsControl',
-    components: {toolsControl},
+    components: {toolsControl, staticMarker},
     data() {
         return {
             map: '',
@@ -51,6 +50,7 @@ export default {
             });
  
             this.$refs.toolsControl.init(this.map, this.AMap);
+            this.$refs.staticMarker.init(this.map, this.AMap);
             console.log('end');
         },
 
@@ -78,6 +78,10 @@ export default {
     bottom: 20px;
     left: 50%;
     transform: translate(-50%);
+}
+
+.panelTools{
+    float: left;
 }
 .el-dropdown {
     vertical-align: top;

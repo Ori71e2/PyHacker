@@ -1,5 +1,5 @@
 <template>
-        <div id="panelTools">
+        <div>
             <el-popover placement="top" trigger="hover">
                 <el-checkbox-group  v-model="checkedToolsList" @change="handleCheckedToolsChange">
                     <el-checkbox ref="scale" v-model="scaleVal"  label="比例尺" @change="toggleScale"></el-checkbox>
@@ -188,33 +188,6 @@ export default {
 }
 </script>
 <style scoped>
-.map-container{
-    width: 100%;
-    height: 100%;
-}
-
-#panelNav{
-    position: fixed;
-    background-color: white;
-    max-height: 70%;
-    overflow-y: auto;
-    top: 120px;
-    right: 10px;
-    width: 280px;
-}
-
-#panelTools{
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translate(-50%);
-}
-.el-dropdown {
-    vertical-align: top;
-}
-.el-dropdown + .el-dropdown {
-    margin-left: 15px;
-}
 .el-icon-arrow-down {
     font-size: 12px;
 }
