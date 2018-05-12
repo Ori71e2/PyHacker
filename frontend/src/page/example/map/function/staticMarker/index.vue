@@ -15,11 +15,7 @@
 
 <script>
 /* eslint-disable */
-
 import { mapState, mapMutations, mapActions } from 'vuex'
-
-//var map, eqCanvas, dyCanvas, staCanvas
-
 export default {
     data() {
         return {
