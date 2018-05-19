@@ -1,25 +1,24 @@
 
 const state = {
     mapNav: {
-        state: false,
-        
+        flag: false, 
         origin: [],
         destination: []
     }
 }
 
 const getters = {
-    getMapNavState() {
-        return state.mapNav.state;
+    getMapNavFlag() {
+        return state.mapNav.flag;
     }
 }
 
 const mutations = {
-    setMapNavState(state) {
-        if (state == true) {
-            state.mapNav.state = true;
+    setMapNavFlag(flag) {
+        if (flag == true) {
+            state.mapNav.flag = true;
         } else {
-            state.mapNav.state = false;
+            state.mapNav.flag = false;
         }
     },
     setMapNavOrigin(origin) {

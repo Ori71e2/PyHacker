@@ -5,6 +5,7 @@
         <div id="panelTools">
             <tools-control class="panelTools" ref="toolsControl"></tools-control>
             <static-marker class="panelTools" ref="staticMarker"></static-marker>
+            <driving-nav class="panelTools" ref="drivingNav"></driving-nav>
         </div>
     </div>
 </template>
@@ -17,13 +18,15 @@ import amap from '@/util/amap'
 import EqLayer from './layer/equipmentLayer.js'
 import EqDraw from './layer/equipmentDraw.js'
 import DyLayer from './layer/dynamicLayer.js'
-import DrivingNav from './function/drivingNav.js'
+//import DrivingNav from './function/drivingNav.js'
 
 import toolsControl from './function/toolsControl'
 import staticMarker from './function/staticMarker'
+import drivingNav from './function/drivingNav'
+
 
 export default {
-    components: {toolsControl, staticMarker},
+    components: {toolsControl, staticMarker, drivingNav},
     data() {
         return {
             map: '',
@@ -36,13 +39,8 @@ export default {
         })
     },
     activated() {
-        //this.dyLayer = new DyLayer(this.map, AMap);
     },
     methods: {
-        ...mapActions({
-            getLine: 'equipment/getLine',
-            getTreeInfo: 'equipment/getTreeInfo'
-        }),
         init(){
             this.map = new AMap.Map('map1', amap.defaultOption);
             this.AMap = AMap;
@@ -51,6 +49,7 @@ export default {
  
             this.$refs.toolsControl.init(this.map, this.AMap);
             this.$refs.staticMarker.init(this.map, this.AMap);
+            this.$refs.drivingNav.init(this.map, this.AMap);
             console.log('end');
         },
 
