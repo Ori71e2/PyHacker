@@ -2,8 +2,8 @@
 const state = {
     mapNav: {
         flag: false, 
-        origin: [],
-        destination: []
+        origin: {x: '', y: ''},
+        destination: {x: '', y: ''}
     }
 }
 

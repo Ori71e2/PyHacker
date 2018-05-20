@@ -1,4 +1,5 @@
 <template>
+    <div>
         <div>
             <el-popover placement="top" trigger="hover">
 
@@ -26,7 +27,7 @@
                         </el-col>
                         <el-col :span="4">
                             <div>
-                                <el-button  type="success" icon="el-icon-location">选取起点</el-button>
+                                <el-button  type="success" icon="el-icon-location" v-on:click="toggleGetPosition(1)">选取起点</el-button>
                             </div>
                         </el-col>
                         <el-col :span="4">
@@ -36,7 +37,7 @@
                         </el-col>
                         <el-col :span="4">
                             <div>
-                                  <el-button type="primary">隐藏文字</el-button>
+                                  <el-button type="primary"  v-on:click="toggleDispalyDrivingNavPanel">显示文字</el-button>
                             </div>
                         </el-col>
                     </el-row>
@@ -63,17 +64,17 @@
                         </el-col>
                         <el-col :span="4">
                             <div>
-                                <el-button type="warning" icon="el-icon-location">选取终点</el-button>
+                                <el-button type="warning" icon="el-icon-location" v-on:click="toggleGetPosition(2)">选取终点</el-button>
                             </div>
                         </el-col>
                         <el-col :span="4">
                             <div>
-                                  <el-button type="danger">取消路径</el-button>
+                                  <el-button type="danger" v-on:click="toggleClearDrivingSearch">取消规划</el-button>
                             </div>
                         </el-col>
                         <el-col :span="4">
                             <div>
-                                  <el-button type="danger">隐藏路径</el-button>
+                                  <el-button type="danger" v-on:click="toggleHideDrivingNavPanel">隐藏文字</el-button>
                             </div>
                         </el-col>
                     </el-row>
@@ -84,6 +85,7 @@
                 </el-button>
             </el-popover>
         </div>
+    </div>
 </template>
 
 <script>
@@ -98,11 +100,13 @@ export default {
         return {
             map: '',
             AMap: '',
-            drivingNav: '',
+            panelDrivingNavElement: '',
+            flag: '',
             originX: '',
             originY: '',
             destinationX: '',
-            destinationY: ''
+            destinationY: '',
+            clickListener: ''
         }
     },
     mounted() {
@@ -123,11 +127,12 @@ export default {
     },
     watch: {
         getMapNavFlag(newVal, oldVal) {
-            alert(this.mapNav.flag);
+            console.log(this.mapNav.flag);
             this.originX = this.mapNav.origin.x;
             this.originY = this.mapNav.origin.y;
             this.destinationX = this.mapNav.destination.x;
             this.destinationY = this.mapNav.destination.y;
+            this.toggleDrivingSearch();
         }
     },
     methods: {
@@ -135,22 +140,23 @@ export default {
             getLine: 'equipment/getLine',
             getTreeInfo: 'equipment/getTreeInfo'
         }),
-        init(map, amap){
+        init(map, amap, element){
             // 设置toolBar
             this.map = map;
             this.AMap = amap;
+            this.panelDrivingNavElement = element;
             //构造路线导航类
             AMap.service(["AMap.Driving"], function() {
             // 不在回调函数里初始化this.drivingNav，会出错，但找不到原因
             });
+            console.log(element);
             this.drivingNav = new AMap.Driving({
                 map: this.map,
-                //panel: "panelNav",
+                panel: element,
                 //policy: AMap.DrivingPolicy.LEAST_TIME
                 });
         },
         toggleDrivingSearch() {
-            alert(1);
             var errorMsg = ""
             // 根据起终点经纬度规划驾车导航路线
             //this.drivingNav.search(new this.AMap.LngLat(118.716087,33.720534), new this.AMap.LngLat(118.720623, 33.70349));
@@ -175,12 +181,62 @@ export default {
             console.log("this.originX" + this.originY);
             console.log("this.originX" + this.destinationX);
             console.log("this.originX" + this.destinationY);
+            this.removeClickListener();
             this.drivingNav.search(new this.AMap.LngLat(this.originX, this.originY), new this.AMap.LngLat(this.destinationX, this.destinationY)); 
+        },
+        toggleClearDrivingSearch() {
+            this.drivingNav.clear();
+        },
+        toggleHideDrivingNavPanel() {
+            this.panelDrivingNavElement.hidden = true;
+        },
+        toggleDispalyDrivingNavPanel() {
+            this.panelDrivingNavElement.hidden = false;           
+        },
+        toggleGetPosition(data) {
+            this.flag = data;
+            this.removeClickListener(); //防止重复绑定
+            this.clickListener = AMap.event.addListener(this.map, "click", function(e) {
+                /*
+                if (this.flag == 1) {
+                    this.originX = e.lnglat.getLng();
+                    this.originY = e.lnglat.getLat();
+                } else {
+                    this.destinationX = e.lnglat.getLng();
+                    this.destinationY = e.lnglat.getLat();            
+                }    
+                */
+                this.setPosition(e);
+            }, this);            
+        },
+        setPosition(e) {
+            if (this.flag == 1) {
+                this.originX = e.lnglat.getLng();
+                this.originY = e.lnglat.getLat();
+            } else {
+                this.destinationX = e.lnglat.getLng();
+                this.destinationY = e.lnglat.getLat();            
+            }            
+        },
+        removeClickListener() {
+            if (this.clickListener) {
+                AMap.event.removeListener(this.clickListener);//移除事件，以绑定时返回的对象作为参数
+            }
         }
+
     }
 }
 </script>
 <style scoped>
+.panelMapNav {
+    position: fixed;
+    background-color: white;
+    max-height: 70%;
+    overflow-y: auto;
+    top: -20px;
+    right: 10px;
+    width: 280px;
+}
 .el-icon-arrow-down {
     font-size: 12px;
 }

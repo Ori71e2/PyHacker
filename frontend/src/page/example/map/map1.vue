@@ -3,10 +3,13 @@
         <div id="map1" class="map-container"></div>
         <div id="panelNav"></div>
         <div id="panelTools">
-            <tools-control class="panelTools" ref="toolsControl"></tools-control>
-            <static-marker class="panelTools" ref="staticMarker"></static-marker>
-            <driving-nav class="panelTools" ref="drivingNav"></driving-nav>
+            <el-row type="flex" class="row-bg" justify="space-around" :gutter="20">
+                <el-col :span="4"><tools-control ref="toolsControl"></tools-control></el-col>
+                <el-col :span="4"><static-marker ref="staticMarker"></static-marker></el-col>
+                <el-col :span="4"><driving-nav  ref="drivingNav"></driving-nav></el-col>
+            </el-row>
         </div>
+        <div id="panelMapDrivingNav" ref="mapDrivingNav"></div>
     </div>
 </template>
 
@@ -40,6 +43,11 @@ export default {
     },
     activated() {
     },
+    computed: {
+        ...mapState({
+            mapNav: state => state.mapStateWatch.mapNav
+        })
+    },
     methods: {
         init(){
             this.map = new AMap.Map('map1', amap.defaultOption);
@@ -49,7 +57,20 @@ export default {
  
             this.$refs.toolsControl.init(this.map, this.AMap);
             this.$refs.staticMarker.init(this.map, this.AMap);
-            this.$refs.drivingNav.init(this.map, this.AMap);
+            this.$refs.drivingNav.init(this.map, this.AMap, this.$refs.mapDrivingNav);
+            console.log("1");
+            this.mapNav.origin.x = 118.716087;
+            console.log(this.mapNav.origin.x);
+            this.mapNav.origin.y = 33.720534;
+            console.log(this.mapNav.origin.y);
+            this.mapNav.destination.x = 118.720623;
+            console.log(this.mapNav.destination.x);
+            this.mapNav.destination.y = 33.70349;
+            console.log(this.mapNav.destination.y);
+            console.log(2);
+            console.log(this.mapNav.origin);
+            this.mapNav.flag = !this.mapNav.flag;
+            console.log(3);
             console.log('end');
         },
 
@@ -62,7 +83,7 @@ export default {
     height: 100%;
 }
 
-#panelNav{
+#panelMapDrivingNav{
     position: fixed;
     background-color: white;
     max-height: 70%;
@@ -79,9 +100,6 @@ export default {
     transform: translate(-50%);
 }
 
-.panelTools{
-    float: left;
-}
 .el-dropdown {
     vertical-align: top;
 }
