@@ -106,7 +106,8 @@ export default {
             originY: '',
             destinationX: '',
             destinationY: '',
-            clickListener: ''
+            clickListener: '',
+            data: 'Helllo'
         }
     },
     mounted() {
@@ -132,30 +133,28 @@ export default {
             this.originY = this.mapNav.origin.y;
             this.destinationX = this.mapNav.destination.x;
             this.destinationY = this.mapNav.destination.y;
-            this.toggleDrivingSearch();
+            // 判断是否加载完成以及是否是第一次
+            if (this.drivingNav) {
+                this.toggleDrivingSearch();
+            }
         }
     },
     methods: {
-        ...mapActions({
-            getLine: 'equipment/getLine',
-            getTreeInfo: 'equipment/getTreeInfo'
-        }),
         init(map, amap, element){
-            // 设置toolBar
             this.map = map;
             this.AMap = amap;
             this.panelDrivingNavElement = element;
             //构造路线导航类
-            AMap.service(["AMap.Driving"], function() {
-            // 不在回调函数里初始化this.drivingNav，会出错，但找不到原因
-            });
-            console.log(element);
-            this.drivingNav = new AMap.Driving({
+            this.drivingNav = new this.AMap.Driving({
                 map: this.map,
                 panel: element,
                 //policy: AMap.DrivingPolicy.LEAST_TIME
                 });
+            console.log(element);
+            console.log(this.drivingNav);
+
         },
+
         toggleDrivingSearch() {
             var errorMsg = ""
             // 根据起终点经纬度规划驾车导航路线

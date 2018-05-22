@@ -7,6 +7,7 @@
                 <el-col :span="4"><tools-control ref="toolsControl"></tools-control></el-col>
                 <el-col :span="4"><static-marker ref="staticMarker"></static-marker></el-col>
                 <el-col :span="4"><driving-nav  ref="drivingNav"></driving-nav></el-col>
+                <el-col :span="4"><geolocation ref="geolocation"></geolocation></el-col>
             </el-row>
         </div>
         <div id="panelMapDrivingNav" ref="mapDrivingNav"></div>
@@ -26,10 +27,11 @@ import DyLayer from './layer/dynamicLayer.js'
 import toolsControl from './function/toolsControl'
 import staticMarker from './function/staticMarker'
 import drivingNav from './function/drivingNav'
+import geolocation from './function/geolocation'
 
 
 export default {
-    components: {toolsControl, staticMarker, drivingNav},
+    components: {toolsControl, staticMarker, drivingNav, geolocation},
     data() {
         return {
             map: '',
@@ -52,12 +54,12 @@ export default {
         init(){
             this.map = new AMap.Map('map1', amap.defaultOption);
             this.AMap = AMap;
-            AMap.plugin(['AMap.ToolBar', 'AMap.Scale', 'AMap.OverView'], function () {
-            });
- 
+            // 所有插件在amap.js中添加
             this.$refs.toolsControl.init(this.map, this.AMap);
             this.$refs.staticMarker.init(this.map, this.AMap);
             this.$refs.drivingNav.init(this.map, this.AMap, this.$refs.mapDrivingNav);
+            this.$refs.geolocation.init(this.map, this.AMap);
+
             console.log("1");
             this.mapNav.origin.x = 118.716087;
             console.log(this.mapNav.origin.x);
@@ -69,7 +71,7 @@ export default {
             console.log(this.mapNav.destination.y);
             console.log(2);
             console.log(this.mapNav.origin);
-            this.mapNav.flag = !this.mapNav.flag;
+            //this.mapNav.flag = !this.mapNav.flag;
             console.log(3);
             console.log('end');
         },
