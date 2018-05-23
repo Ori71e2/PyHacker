@@ -3,14 +3,14 @@
         <div>
             <el-popover placement="top" trigger="hover">
                 <div>
-                    <el-row type="flex" justify="space-around" :gutter="20" >
-                        <el-col :span="6">
-                            <el-button  type="success" icon="el-icon-location" v-on:click="toggleStartGeolocation">开始定位</el-button>
+                    <el-row type="flex" justify="space-between" :gutter="20" >
+                        <el-col :span="8">
+                            <el-button  type="success" v-on:click="toggleStartGeolocation">开始定位</el-button>
                         </el-col>
-                        <el-col :span="6">
+                        <el-col :span="8">
                             <el-button type="warning"  v-on:click="toggleRealTimeGeolocation">实时定位</el-button>
                         </el-col>
-                        <el-col :span="6">
+                        <el-col :span="8">
                             <el-button type="danger" v-on:click="toggleStopGeolocation">取消定位</el-button>
                         </el-col>
                     </el-row>
@@ -120,5 +120,6 @@ export default {
 .tag {
     margin-top: 5px;
 }
+
 </style>
 
