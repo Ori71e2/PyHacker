@@ -30,3 +30,4 @@ export default {
 }
 </style>
 
+element-theme-default/src/index.css
