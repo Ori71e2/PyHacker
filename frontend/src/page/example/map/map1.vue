@@ -11,6 +11,9 @@
             </el-row>
         </div>
         <div id="panelMapDrivingNav" ref="mapDrivingNav"></div>
+        <equipment-layer  ref="equipmentLayer"></equipment-layer>
+        <dynamic-layer  ref="dynamicLayer"></dynamic-layer>
+
     </div>
 </template>
 
@@ -19,10 +22,10 @@
 /* eslint-disable */
 import { mapState, mapMutations, mapActions } from 'vuex'
 import amap from '@/util/amap'
-import EqLayer from './layer/equipmentLayer.js'
+import equipmentLayer from './layer/equipmentLayer'
+import dynamicLayer from './layer/dynamicLayer'
+
 import EqDraw from './layer/equipmentDraw.js'
-import DyLayer from './layer/dynamicLayer.js'
-//import DrivingNav from './function/drivingNav.js'
 
 import toolsControl from './function/toolsControl'
 import staticMarker from './function/staticMarker'
@@ -31,7 +34,7 @@ import geolocation from './function/geolocation'
 
 
 export default {
-    components: {toolsControl, staticMarker, drivingNav, geolocation},
+    components: {toolsControl, staticMarker, drivingNav, geolocation, equipmentLayer, dynamicLayer},
     data() {
         return {
             map: '',
@@ -59,20 +62,15 @@ export default {
             this.$refs.staticMarker.init(this.map, this.AMap);
             this.$refs.drivingNav.init(this.map, this.AMap, this.$refs.mapDrivingNav);
             this.$refs.geolocation.init(this.map, this.AMap);
+            this.$refs.equipmentLayer.init(this.map, this.AMap);
+            this.$refs.dynamicLayer.init(this.map, this.AMap);
 
-            console.log("1");
+
             this.mapNav.origin.x = 118.716087;
-            console.log(this.mapNav.origin.x);
             this.mapNav.origin.y = 33.720534;
-            console.log(this.mapNav.origin.y);
             this.mapNav.destination.x = 118.720623;
-            console.log(this.mapNav.destination.x);
             this.mapNav.destination.y = 33.70349;
-            console.log(this.mapNav.destination.y);
-            console.log(2);
-            console.log(this.mapNav.origin);
             //this.mapNav.flag = !this.mapNav.flag;
-            console.log(3);
             console.log('end');
         },
 

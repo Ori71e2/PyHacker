@@ -8,8 +8,8 @@ export default {
             script.type = 'text/javascript'
             script.async = true
             //script.src = 'https://webapi.amap.com/maps?v=1.4.1&key=4e4c8706ad7f1d468011d7b1d2340bf2&callback=initAmap'
-            script.src = 'https://webapi.amap.com/maps?v=1.4.1&key=4e4c8706ad7f1d468011d7b1d2340bf2&' 
-                       + 'plugin=AMap.Scale,AMap.OverView,AMap.ToolBar,AMap,AMap.Driving,AMap.Geolocation'
+            script.src = 'https://webapi.amap.com/maps?v=1.4.2&key=4e4c8706ad7f1d468011d7b1d2340bf2&' 
+                       + 'plugin=AMap.Scale,AMap.OverView,AMap.ToolBar,AMap.CustomLayer,AMap,AMap.Driving,AMap.Geolocation'
                        + '&callback=initAmap';
             document.body.appendChild(script)
             window.initAmap = () =>{

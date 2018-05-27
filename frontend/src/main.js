@@ -10,6 +10,7 @@ import store from './store'
 import axios from './util/ajax'
 import i18n from './util/i18n'
 import App from './index'
+//import * as d3 from 'd3'
 
 import './components/install'
 import './plugins/install'
