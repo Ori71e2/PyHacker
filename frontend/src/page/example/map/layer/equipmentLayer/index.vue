@@ -24,12 +24,15 @@ export default {
             this.posArray = [[118.720366, 33.69942], [118.720623, 33.70349], [118.721053, 33.707703], [118.720967, 33.713343], [118.721224, 33.718769], [118.71719, 33.719412], [118.715044, 33.717484]];
             console.log('begin polyline');
             this.polyline = new this.AMap.Polyline({
-                path: this.posArray,
+                path: this.dyadicArrayToLngLat(this.posArray),
                 strokeColor: "#3366FF",
                 strokeOpacity: 1,
                 strokeWeight: 3,
                 strokeStyle: "solid",
-                strokeDasharray: [10, 5]
+                strokeDasharray: [10, 5],
+                extData: {
+                    id: 1
+                }
             });
             console.log('polyline ini');
             this.polyline.setMap(this.map);
@@ -44,19 +47,48 @@ export default {
         polylineBind(e) {
             console.log('e.lnglat');
             console.log(e.lnglat);
-            this.getPointOnSegment(this.posArray, e.lnglat);        
+            console.log(e.target);
+            // 获取对象属性，我们可以给其定义唯一的id进行路径标识
+            console.log(e.target.getOptions().extData.id);
+            this.getPointOnSegment(this.posArray, [e.lnglat.L, e.lnglat.N]);        
         },
         getPointOnSegment(array, pos) {
             console.log('beging search')
-            for(var i in array) {
-                console.log(i);
-                console.log(array[i])
-                if(this.AMap.GeometryUtil.isPointOnSegment(pos, this.AMap.LngLat(array[i][0],array[i][1]), this.AMap.LngLat(array[i+1][0], array[i+1][1]), 0.0000001)) {
-                    console.log(i);
-                    return i;
+            for(var i=0;  i<this.arrayCount(array); i++) {
+                if(array[i+1]) {
+                    // 此处判断使用经纬度对
+                    if(this.AMap.GeometryUtil.isPointOnSegment(pos, array[i], array[i+1])) {
+                        console.log(i);
+                        return i;
+                    }
                 }
+                
             }
-        }   
+        },
+        // 二维坐标数组转换为LngLat对象数组
+        dyadicArrayToLngLat(dyadicArray) {
+            var dyadicLngLatArray = [];
+            for(var i=0; i<this.arrayCount(dyadicArray); i++) {
+                dyadicLngLatArray.push(new this.AMap.LngLat(dyadicArray[i][0], dyadicArray[i][1]));
+            }
+            console.log('dyadicLngLatArray');
+            console.log(dyadicLngLatArray);
+            return dyadicLngLatArray;
+        },
+        // 计算数组元素个数
+        arrayCount(array) {
+            var objType = typeof array;
+            if (objType == "string") {
+                return obj.length;
+            }else if(objType == "object") {
+                var objLen = 0;
+                for (var i in array) {
+                    objLen++;
+                }
+                return objLen;
+            }
+            return false;
+        }
     }
 }
 </script>
