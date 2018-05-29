@@ -18,20 +18,38 @@ export default {
     mounted() {
     },
     methods: {
+        ...mapActions({
+            getLine: 'equipment/getLine',
+        }),
         init(map, amap){
             this.map = map;
             this.AMap = amap;
-            this.posArray = [[118.720366, 33.69942], [118.720623, 33.70349], [118.721053, 33.707703], [118.720967, 33.713343], [118.721224, 33.718769], [118.71719, 33.719412], [118.715044, 33.717484]];
+            //this.posArray = [[118.720366, 33.69942], [118.720623, 33.70349], [118.721053, 33.707703], [118.720967, 33.713343], [118.721224, 33.718769], [118.71719, 33.719412], [118.715044, 33.717484]];
+            this.getLine().then(res => {
+                if(res) {
+                    this.drawPolyLine(res);
+                } else {
+                    console.log('line get fail');
+                    return false;
+                }
+            }).catch(err => {
+                console.log('No Data');
+                return false;
+            })
+
+        },
+        drawPolyLine(res) {
             console.log('begin polyline');
             this.polyline = new this.AMap.Polyline({
-                path: this.dyadicArrayToLngLat(this.posArray),
+                path: this.GPSToLngLat(res),
                 strokeColor: "#3366FF",
                 strokeOpacity: 1,
                 strokeWeight: 3,
                 strokeStyle: "solid",
                 strokeDasharray: [10, 5],
                 extData: {
-                    id: 1
+                    id: 1,
+                    path: res
                 }
             });
             console.log('polyline ini');
@@ -40,19 +58,12 @@ export default {
                 this.polylineBind(e);
             }, this)
         },
-        draw() {
-            
-        },
 
         polylineBind(e) {
-            console.log('e.lnglat');
-            console.log(e.lnglat);
-            console.log(e.target);
             // 获取对象属性，我们可以给其定义唯一的id进行路径标识
-            console.log(e.target.getOptions().extData.id);
-            this.getPointOnSegment(this.posArray, [e.lnglat.L, e.lnglat.N]);        
+            this.getPointOnSegment([e.lnglat.L, e.lnglat.N], e.target.getExtData().path);        
         },
-        getPointOnSegment(array, pos) {
+        getPointOnSegment(pos, array) {
             console.log('beging search')
             for(var i=0;  i<this.arrayCount(array); i++) {
                 if(array[i+1]) {
@@ -65,21 +76,19 @@ export default {
                 
             }
         },
-        // 二维坐标数组转换为LngLat对象数组
-        dyadicArrayToLngLat(dyadicArray) {
-            var dyadicLngLatArray = [];
-            for(var i=0; i<this.arrayCount(dyadicArray); i++) {
-                dyadicLngLatArray.push(new this.AMap.LngLat(dyadicArray[i][0], dyadicArray[i][1]));
+        // GPS坐标数组转换为LngLat对象数组
+        GPSToLngLat(path) {
+            var LngLatArray = [];
+            for(var i=0; i<this.arrayCount(path); i++) {
+                LngLatArray.push(new this.AMap.LngLat(path[i][0], path[i][1]));
             }
-            console.log('dyadicLngLatArray');
-            console.log(dyadicLngLatArray);
-            return dyadicLngLatArray;
+            return LngLatArray;
         },
         // 计算数组元素个数
         arrayCount(array) {
             var objType = typeof array;
             if (objType == "string") {
-                return obj.length;
+                return array.length;
             }else if(objType == "object") {
                 var objLen = 0;
                 for (var i in array) {
