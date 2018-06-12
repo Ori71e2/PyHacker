@@ -98,12 +98,22 @@ WSGI_APPLICATION = 'pyhacker.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+DATABASE_ENGINE = 'django.db.backends.mysql'
+MYSQL_DATABASE = 'pyhacker'
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = 'syy83753051'
+MYSQL_HOST = '127.0.0.1'
+MYSQL_PORT = '3306'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': DATABASE_ENGINE,
+        'NAME': MYSQL_DATABASE,
+        'USER': MYSQL_USER,
+        'PASSWORD': MYSQL_PASSWORD,
+        'HOST': MYSQL_HOST,
+        'PORT': MYSQL_PORT,
     }
+
 }
 
 
